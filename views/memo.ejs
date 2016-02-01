@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<head>
+	<title>Test Memo</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="/controller/memoController.js"></script>
+	<link href="/css/style.css" rel="stylesheet">
+	</head>
+<body>
+<div class="container" ng-app="memoapp" ng-init="init();" ng-controller="memoController">
+	<textarea class="txtMemo" ng-model="memo" id="memo"></textarea>
+	<button class="btnSend" ng-click="send()" ng-show="mode=='new'">전송</button>
+	<div class="editbox" ng-show="mode=='edit'">
+		<button class="btnEdit" ng-click="edit()">수정</button>
+		<button class="btnCancel" ng-click="cancel()">취소</button>
+	</div>
+	<br><br><br>
+	<table class="memolist">
+		<thead>
+			<th width="80%">내용</th>
+			<th>수정/삭제</th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in list">
+			<td> <a href="#memo" ng-click="read(item.memo)">{{item.memo | limitTo:30:"..."}}</a></td>
+			<td align="center"><button ng-click="selectedit(item._id,item.memo)">수정 </button><button ng-click="delete(item._id)">삭제 </button></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</body>
+
+
+</html>
+
+
